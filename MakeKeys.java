@@ -17,7 +17,7 @@ public class MakeKeys {
 
   try {
 
-   String path = "C://Users/trish/Desktop/run";
+   String path = "C://Users/trish/Desktop/trun";
 
 
 
@@ -112,7 +112,7 @@ public class MakeKeys {
 
     publicKey.getEncoded());
 
-  FileOutputStream fos = new FileOutputStream(path + "/public_key");
+  FileOutputStream fos = new FileOutputStream(path + "/public.key");
 
   fos.write(x509EncodedKeySpec.getEncoded());
 
@@ -127,7 +127,7 @@ public class MakeKeys {
 
     privateKey.getEncoded());
 
-  fos = new FileOutputStream(path + "/private_key");
+  fos = new FileOutputStream(path + "/private.key");
 
   fos.write(pkcs8EncodedKeySpec.getEncoded());
 
@@ -146,10 +146,10 @@ public class MakeKeys {
 
   // Read Public Key.
 
-  File filePublicKey = new File(path + "/public_key");
+  File filePublicKey = new File(path + "/public.key");
 
-  FileInputStream fis = new FileInputStream(path + "/public_key");
-
+  FileInputStream fis = new FileInputStream(path + "/public.key");
+  
   byte[] encodedPublicKey = new byte[(int) filePublicKey.length()];
 
   fis.read(encodedPublicKey);
@@ -161,9 +161,9 @@ public class MakeKeys {
 
   // Read Private Key.
 
-  File filePrivateKey = new File(path + "/private_key");
+  File filePrivateKey = new File(path + "/private.key");
 
-  fis = new FileInputStream(path + "/private_key");
+  fis = new FileInputStream(path + "/private.key");
 
   byte[] encodedPrivateKey = new byte[(int) filePrivateKey.length()];
 
