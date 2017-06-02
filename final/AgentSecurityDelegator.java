@@ -5,9 +5,9 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESedeKeySpec;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
- 
-public class TripleDES {
- 
+
+public class SecurityDelegator {
+
     private static final String UNICODE_FORMAT = "UTF8";
     public static final String DESEDE_ENCRYPTION_SCHEME = "DESede";
     private KeySpec myKeySpec;
@@ -17,10 +17,10 @@ public class TripleDES {
     private String myEncryptionKey;
     private String myEncryptionScheme;
     SecretKey key;
- 
-    public TripleDES() throws Exception
+
+    public SecurityDelegator(String SecretPhrase) throws Exception
     {
-        myEncryptionKey = "ThisIsSecretEncryptionKey";
+        myEncryptionKey = SecretPhrase;
         myEncryptionScheme = DESEDE_ENCRYPTION_SCHEME;
         keyAsBytes = myEncryptionKey.getBytes(UNICODE_FORMAT);
         myKeySpec = new DESedeKeySpec(keyAsBytes);
@@ -28,7 +28,7 @@ public class TripleDES {
         cipher = Cipher.getInstance(myEncryptionScheme);
         key = mySecretKeyFactory.generateSecret(myKeySpec);
     }
- 
+
 
     public String encrypt(String unencryptedString) {
         String encryptedString = null;
@@ -66,28 +66,6 @@ public class TripleDES {
         return stringBuffer.toString();
     }
 
-    public static void main(String args []) throws Exception
-    {
-        TripleDES myEncryptor= new TripleDES();
- 
-        String stringToEncrypt="Multiagents Project 123";
-        System.out.println("String To Encrypt: "+stringToEncrypt);
 
-        long start_time = System.nanoTime();
-        String encrypted=myEncryptor.encrypt(stringToEncrypt);
-        long end_time = System.nanoTime();
-        double time_difference = (end_time-start_time)/1e6; 
-        
-        System.out.println("Encrypted Value :" + encrypted+" Time Taken to Encrypt :"+ time_difference);
-        
-        ong start_time = System.nanoTime();
-        String decrypted=myEncryptor.decrypt(encrypted);
-        long end_time = System.nanoTime();
-        double time_difference = (end_time-start_time)/1e6;      
-        
-        System.out.println("Decrypted Value :"+decrypted+" Time Taken to Encrypt :"+ time_difference);
- 
-    }
- 
 }
 

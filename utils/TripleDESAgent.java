@@ -1,3 +1,5 @@
+package com.jayanth.chandra;
+
 import java.security.spec.KeySpec;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -6,7 +8,7 @@ import javax.crypto.spec.DESedeKeySpec;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
  
-public class TripleDES {
+public class TripleDESAgent {
  
     private static final String UNICODE_FORMAT = "UTF8";
     public static final String DESEDE_ENCRYPTION_SCHEME = "DESede";
@@ -18,7 +20,7 @@ public class TripleDES {
     private String myEncryptionScheme;
     SecretKey key;
  
-    public TripleDES() throws Exception
+    public TripleDESAgent() throws Exception
     {
         myEncryptionKey = "ThisIsSecretEncryptionKey";
         myEncryptionScheme = DESEDE_ENCRYPTION_SCHEME;
@@ -68,26 +70,16 @@ public class TripleDES {
 
     public static void main(String args []) throws Exception
     {
-        TripleDES myEncryptor= new TripleDES();
+        TripleDESAgent myEncryptor= new TripleDESAgent();
  
-        String stringToEncrypt="Multiagents Project 123";
-        System.out.println("String To Encrypt: "+stringToEncrypt);
-
-        long start_time = System.nanoTime();
+        String stringToEncrypt="High Level Project";
         String encrypted=myEncryptor.encrypt(stringToEncrypt);
-        long end_time = System.nanoTime();
-        double time_difference = (end_time-start_time)/1e6; 
-        
-        System.out.println("Encrypted Value :" + encrypted+" Time Taken to Encrypt :"+ time_difference);
-        
-        ong start_time = System.nanoTime();
         String decrypted=myEncryptor.decrypt(encrypted);
-        long end_time = System.nanoTime();
-        double time_difference = (end_time-start_time)/1e6;      
-        
-        System.out.println("Decrypted Value :"+decrypted+" Time Taken to Encrypt :"+ time_difference);
+ 
+        System.out.println("String To Encrypt: "+stringToEncrypt);
+        System.out.println("Encrypted Value :" + encrypted);
+        System.out.println("Decrypted Value :"+decrypted);
  
     }
  
 }
-
