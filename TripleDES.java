@@ -71,12 +71,21 @@ public class TripleDES {
         TripleDES myEncryptor= new TripleDES();
  
         String stringToEncrypt="Multiagents Project 123";
-        String encrypted=myEncryptor.encrypt(stringToEncrypt);
-        String decrypted=myEncryptor.decrypt(encrypted);
- 
         System.out.println("String To Encrypt: "+stringToEncrypt);
-        System.out.println("Encrypted Value :" + encrypted);
-        System.out.println("Decrypted Value :"+decrypted);
+
+        long start_time = System.nanoTime();
+        String encrypted=myEncryptor.encrypt(stringToEncrypt);
+        long end_time = System.nanoTime();
+        double time_difference = (end_time-start_time)/1e6; 
+        
+        System.out.println("Encrypted Value :" + encrypted+" Time Taken to Encrypt :"+ time_difference);
+        
+        ong start_time = System.nanoTime();
+        String decrypted=myEncryptor.decrypt(encrypted);
+        long end_time = System.nanoTime();
+        double time_difference = (end_time-start_time)/1e6;      
+        
+        System.out.println("Decrypted Value :"+decrypted+" Time Taken to Encrypt :"+ time_difference);
  
     }
  
